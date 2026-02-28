@@ -1,0 +1,31 @@
+Daily Logsheet Forms - 
+	Form
+	Latitude and Longitude capturing 
+	Customer and Operator Sign
+	Separate view Tree, Form - Daily 
+				 - Monthly (Customer FeedBack) 
+
+
+Remainder Alerts
+	Vehicle alerts (6)
+	Remainder Alert (6)
+	status Alert(1) 
+	Message popup / E-Mail for the respective Mail 
+	Birthday Wihes via Mail/Whatsapp
+	
+
+Delivery Challan 
+	I created PDF backend coding part without backend code
+	rest of the fields were pulled by sravani 
+
+
+Capture Whatsapp replies in CRM Lead 
+	( R&D ) - Arun > Kishor 
+
+
+Helpdesk Management for the users - Via Whatsapp 
+	( R&D ) - Arun > Kishor 
+
+
+---------------------------------------------------------------------
+

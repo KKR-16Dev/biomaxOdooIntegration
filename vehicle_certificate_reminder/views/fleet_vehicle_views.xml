@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="fleet_vehicle_view_form_inherit_certificates" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form.certificates</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Certificates" name="certificates">
+                    <group>
+                        <group string="FC Certificate">
+                            <field name="fc_certificate" filename="fc_certificate_name"/>
+                            <field name="fc_certificate_name" invisible="1"/>
+                            <field name="fc_expiry_date"/>
+                            <field name="fc_reminder_sent" invisible="1"/>
+                        </group>
+                        <group string="Insurance Certificate">
+                            <field name="insurance_certificate" filename="insurance_certificate_name"/>
+                            <field name="insurance_certificate_name" invisible="1"/>
+                            <field name="insurance_expiry_date"/>
+                            <field name="insurance_reminder_sent" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Battery Certificate">
+                            <field name="battery_certificate" filename="battery_certificate_name"/>
+                            <field name="battery_certificate_name" invisible="1"/>
+                            <field name="battery_expiry_date"/>
+                            <field name="battery_reminder_sent" invisible="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,383 @@
+<t t-name="website.daily-submission">
+    <t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+            <section class="s_title_form o_cc o_cc2 pt64 pb48 o_colored_level" data-snippet="s_title_form" data-name="Title - Form">
+                <div class="o_container_small">
+                    <h2>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;Daily Submission Form</h2>
+                    <p class="text-center lead">Get in touch with your customers to provide them with better service. You can modify the form fields to gather more precise information.</p>
+                    <section class="s_website_form pt16 pb16" data-vcss="001" data-snippet="s_website_form" data-name="Form">
+                        <div class="container-fluid">
+                            <form action="/website/form/" method="post" enctype="multipart/form-data" class="o_mark_required" data-mark="*" data-pre-fill="true" data-model_name="x_daily.submission" data-success-mode="redirect" data-success-page="/contactus-thank-you">
+                                <div class="s_website_form_rows row s_col_no_bgcolor">
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="char" data-translated-name="Crane Name">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="o6i3n0a04adm">
+                                                <span class="s_website_form_label_content">Crane Name</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input class="form-control s_website_form_input" type="text" name="x_crane_name" value="" placeholder="" id="o6i3n0a04adm" data-fill-with="undefined"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="datetime" data-translated-name="Date Time">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="okv62oem1xz">
+                                                <span class="s_website_form_label_content">Date Time</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <div class="s_website_form_datetime input-group date">
+                                                    <input type="text" class="form-control datetimepicker-input s_website_form_input" name="x_datetime" value="" placeholder="" id="okv62oem1xz" data-fill-with="undefined" inputmode="none"/>
+                                                    <div class="input-group-text o_input_group_date_icon cursor-pointer">
+                                                        <i class="fa fa-calendar"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="char" data-translated-name="Customer Name">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="o8iou6f5kev">
+                                                <span class="s_website_form_label_content">Customer Name</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input class="form-control s_website_form_input" type="text" name="x_customer_name" value="" placeholder="" id="o8iou6f5kev" data-fill-with="undefined"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="char" data-translated-name="Mobile">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="o1txpoq5k2cb">
+                                                <span class="s_website_form_label_content">Mobile</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input class="form-control s_website_form_input" type="text" name="x_NewCustomerMobile" value="" placeholder="" id="o1txpoq5k2cb" data-fill-with="undefined"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="char" data-translated-name="Operator Name">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="o5ojb0ypt248">
+                                                <span class="s_website_form_label_content">Operator Name</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input class="form-control s_website_form_input" type="text" name="x_operator_name" value="" placeholder="" id="o5ojb0ypt248" data-fill-with="undefined"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="datetime" data-translated-name="Start Time">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="o36mnqh8yq4">
+                                                <span class="s_website_form_label_content">Start Time</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <div class="s_website_form_datetime input-group date">
+                                                    <input type="text" class="form-control datetimepicker-input s_website_form_input" name="x_start_time" value="" placeholder="" id="o36mnqh8yq4" data-fill-with="undefined" inputmode="none"/>
+                                                    <div class="input-group-text o_input_group_date_icon cursor-pointer">
+                                                        <i class="fa fa-calendar"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="datetime" data-translated-name="Closing Time">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="otuheelleb1d">
+                                                <span class="s_website_form_label_content">Closing Time</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <div class="s_website_form_datetime input-group date">
+                                                    <input type="text" class="form-control datetimepicker-input s_website_form_input" name="x_closing_time" value="" placeholder="" id="otuheelleb1d" data-fill-with="undefined" inputmode="none"/>
+                                                    <div class="input-group-text o_input_group_date_icon cursor-pointer">
+                                                        <i class="fa fa-calendar"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="char" data-translated-name="Lunch">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="or027b7kve6n">
+                                                <span class="s_website_form_label_content">Lunch</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input class="form-control s_website_form_input" type="text" name="x_lunch" value="" placeholder="" id="or027b7kve6n" data-fill-with="undefined"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="binary" data-translated-name="Working Photo">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-sm-auto s_website_form_label" style="width: 200px" for="o7nexbugl0ae">
+                                                <span class="s_website_form_label_content">Working Photo</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="file" class="form-control s_website_form_input" name="x_working_photo" id="o7nexbugl0ae" data-max-files-number="1" data-max-file-size="1" data-fill-with="undefined"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="selection" data-translated-name="Payment">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-sm-auto s_website_form_label" style="width: 200px" for="otlt8d2mnl7">
+                                                <span class="s_website_form_label_content">Payment</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <div class="row s_col_no_resize s_col_no_bgcolor s_website_form_multiple" data-name="x_payment" data-display="horizontal">
+                                                    <div class="radio col-12 col-lg-4 col-md-6">
+                                                        <div class="form-check">
+                                                            <input type="radio" class="s_website_form_input form-check-input" id="otlt8d2mnl70" name="x_payment" value="received" data-fill-with="undefined"/>
+                                                            <label class="form-check-label s_website_form_check_label" for="otlt8d2mnl70">Received</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="radio col-12 col-lg-4 col-md-6">
+                                                        <div class="form-check">
+                                                            <input type="radio" class="s_website_form_input form-check-input" id="otlt8d2mnl71" name="x_payment" value="notreceived"/>
+                                                            <label class="form-check-label s_website_form_check_label" for="otlt8d2mnl71">Not Received</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="binary" data-translated-name="Operator Selfie">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-sm-auto s_website_form_label" style="width: 200px" for="otebw95nlvzr">
+                                                <span class="s_website_form_label_content">Operator Selfie</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="file" class="form-control s_website_form_input" name="x_operator_selfie" id="otebw95nlvzr" data-max-files-number="1" data-max-file-size="1" data-fill-with="undefined"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="char" data-translated-name="Work Nature">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="o7ztwp8lohvj">
+                                                <span class="s_website_form_label_content">Work Nature</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input class="form-control s_website_form_input" type="text" name="x_work_nature" value="" placeholder="" id="o7ztwp8lohvj" data-fill-with="undefined"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="boolean" data-translated-name="Operator Beta">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-sm-auto s_website_form_label" style="width: 200px" for="o4ptqquwwhgy">
+                                                <span class="s_website_form_label_content">Operator Beta</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <div class="form-check">
+                                                    <input type="checkbox" value="Yes" class="s_website_form_input form-check-input" name="x_operator_beta" id="o4ptqquwwhgy" data-fill-with="undefined"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12 s_website_form_field_hidden_if d-none" data-type="integer" data-translated-name="Beta Amount" data-visibility-dependency="x_operator_beta" data-visibility-condition="Yes" data-visibility-comparator="selected">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="ohjkeapxa6km">
+                                                <span class="s_website_form_label_content">Beta Amount</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="number" class="form-control s_website_form_input" step="1" name="x_beta_amount" value="" placeholder="" id="ohjkeapxa6km" data-fill-with="undefined"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="binary" data-translated-name="Logsheet Picture">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-sm-auto s_website_form_label" style="width: 200px" for="o0elc3fjmqvk">
+                                                <span class="s_website_form_label_content">Logsheet Picture</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="file" class="form-control s_website_form_input" name="x_logsheet_picture" id="o0elc3fjmqvk" data-max-files-number="1" data-max-file-size="1" data-fill-with="undefined"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="binary" data-translated-name="Comments of Work">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-sm-auto s_website_form_label" style="width: 200px" for="omrg7cagffmh">
+                                                <span class="s_website_form_label_content">Comments of Work</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="file" class="form-control s_website_form_input" name="x_comments_work" id="omrg7cagffmh" data-max-files-number="1" data-max-file-size="1" data-fill-with="undefined"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="selection" data-translated-name="Work Assigned By">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-sm-auto s_website_form_label" style="width: 200px" for="o6d8bfvsey7g">
+                                                <span class="s_website_form_label_content">Work Assigned By</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <div class="row s_col_no_resize s_col_no_bgcolor s_website_form_multiple" data-name="x_work_assigned" data-display="horizontal">
+                                                    <div class="radio col-12 col-lg-4 col-md-6">
+                                                        <div class="form-check">
+                                                            <input type="radio" class="s_website_form_input form-check-input" id="o6d8bfvsey7g0" name="x_work_assigned" value="kannan" data-fill-with="undefined"/>
+                                                            <label class="form-check-label s_website_form_check_label" for="o6d8bfvsey7g0">Kannan</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="radio col-12 col-lg-4 col-md-6">
+                                                        <div class="form-check">
+                                                            <input type="radio" class="s_website_form_input form-check-input" id="o6d8bfvsey7g1" name="x_work_assigned" value="archana"/>
+                                                            <label class="form-check-label s_website_form_check_label" for="o6d8bfvsey7g1">Archana</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="radio col-12 col-lg-4 col-md-6">
+                                                        <div class="form-check">
+                                                            <input type="radio" class="s_website_form_input form-check-input" id="o6d8bfvsey7g2" name="x_work_assigned" value="rajeshagarwal"/>
+                                                            <label class="form-check-label s_website_form_check_label" for="o6d8bfvsey7g2">Rajesh Agarwal</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="radio col-12 col-lg-4 col-md-6">
+                                                        <div class="form-check">
+                                                            <input type="radio" class="s_website_form_input form-check-input" id="o6d8bfvsey7g3" name="x_work_assigned" value="ajith"/>
+                                                            <label class="form-check-label s_website_form_check_label" for="o6d8bfvsey7g3">Ajith</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="radio col-12 col-lg-4 col-md-6">
+                                                        <div class="form-check">
+                                                            <input type="radio" class="s_website_form_input form-check-input" id="o6d8bfvsey7g4" name="x_work_assigned" value="sanjay"/>
+                                                            <label class="form-check-label s_website_form_check_label" for="o6d8bfvsey7g4">Sanjay</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="radio col-12 col-lg-4 col-md-6">
+                                                        <div class="form-check">
+                                                            <input type="radio" class="s_website_form_input form-check-input" id="o6d8bfvsey7g5" name="x_work_assigned" value="avinash"/>
+                                                            <label class="form-check-label s_website_form_check_label" for="o6d8bfvsey7g5">Avinash</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12" data-type="boolean" data-translated-name="Fill Diesel">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-sm-auto s_website_form_label" style="width: 200px" for="og1448l1ifn6">
+                                                <span class="s_website_form_label_content">Fill Diesel</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <div class="form-check">
+                                                    <input type="checkbox" value="Yes" class="s_website_form_input form-check-input" name="x_fill_diesel" id="og1448l1ifn6" data-fill-with="undefined"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-name="Field" class="s_website_form_field mb-3 col-12 s_website_form_field_hidden_if d-none" data-type="integer" data-translated-name="Diesel Filled" data-visibility-dependency="x_fill_diesel" data-visibility-comparator="selected" data-visibility-condition="Yes">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="obaezvubhw2">
+                                                <span class="s_website_form_label_content">Diesel Filled</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="number" class="form-control s_website_form_input" step="1" name="x_diesel_filled" value="" placeholder="" id="obaezvubhw2" data-fill-with="undefined"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row mb-4">
+                                        <div class="col-md-6 mb-3 s_website_form_field" data-type="text" data-name="x_operator_signature_data">
+                                            <label class="form-label">Operator Signature <span class="text-danger">*</span></label>
+                                            <div class="signature-pad-container border rounded bg-white">
+                                                <canvas id="operator_signature_canvas" style="width: 100%; height: 150px; cursor: crosshair; touch-action: none;"/>
+                                                
+                                                <input type="hidden" class="s_website_form_input" name="x_operator_signature_data" id="operator_signature_input" required="required"/>
+                                            </div>
+                                            <button type="button" class="btn btn-sm btn-link text-danger" onclick="clearCanvas('operator_signature_canvas')">Clear Operator Signature</button>
+                                        </div>
+
+                                        <div class="col-md-6 mb-3 s_website_form_field" data-type="text" data-name="x_customer_signature_data">
+                                            <label class="form-label">Customer Signature <span class="text-danger">*</span></label>
+                                            <div class="signature-pad-container border rounded bg-white">
+                                                <canvas id="customer_signature_canvas" style="width: 100%; height: 150px; cursor: crosshair; touch-action: none;"/>
+                                                
+                                                <input type="hidden" class="s_website_form_input" name="x_customer_signature_data" id="customer_signature_input" required="required"/>
+                                            </div>
+                                            <button type="button" class="btn btn-sm btn-link text-danger" onclick="clearCanvas('customer_signature_canvas')">Clear Customer Signature</button>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="mb-0 py-2 col-12 s_website_form_submit text-end s_website_form_no_submit_label" data-name="Submit Button">
+                                        <div style="width: 200px;" class="s_website_form_label"/>
+                                        <span id="s_website_form_result"/>
+                                        <a href="#" role="button" class="btn btn-primary s_website_form_send">Submit</a>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <script>
+                                // Simple function to clear the canvas
+                                function clearCanvas(canvasId) {
+                                    const canvas = document.getElementById(canvasId);
+                                    const ctx = canvas.getContext('2d');
+                                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                    // Clear the hidden input
+                                    document.getElementById(canvasId.replace('_canvas', '_input')).value = "";
+                                }
+
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    const canvases = ['operator_signature_canvas', 'customer_signature_canvas'];
+                                    
+                                    canvases.forEach(id =&gt; {
+                                        const canvas = document.getElementById(id);
+                                        const input = document.getElementById(id.replace('_canvas', '_input'));
+                                        
+                                        // Resize canvas to fit container (avoids scaling issues)
+                                        canvas.width = canvas.offsetWidth;
+                                        canvas.height = canvas.offsetHeight;
+
+                                        const ctx = canvas.getContext('2d');
+                                        let drawing = false;
+
+                                        // --- Helper functions for coordinates ---
+                                        function getPos(e) {
+                                            const rect = canvas.getBoundingClientRect();
+                                            // Handle touch or mouse
+                                            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                                            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                                            return {
+                                                x: clientX - rect.left,
+                                                y: clientY - rect.top
+                                            };
+                                        }
+
+                                        function startDraw(e) {
+                                            e.preventDefault(); // Stop page scrolling on mobile
+                                            drawing = true;
+                                            const pos = getPos(e);
+                                            ctx.beginPath();
+                                            ctx.moveTo(pos.x, pos.y);
+                                        }
+
+                                        function moveDraw(e) {
+                                            if (!drawing) return;
+                                            e.preventDefault();
+                                            const pos = getPos(e);
+                                            ctx.lineWidth = 2;
+                                            ctx.lineCap = 'round';
+                                            ctx.lineTo(pos.x, pos.y);
+                                            ctx.stroke();
+                                        }
+
+                                        function endDraw(e) {
+                                            if (!drawing) return;
+                                            drawing = false;
+                                            // Save to hidden input instantly
+                                            input.value = canvas.toDataURL(); 
+                                        }
+
+                                        // --- Event Listeners (Mouse + Touch) ---
+                                        canvas.addEventListener('mousedown', startDraw);
+                                        canvas.addEventListener('mousemove', moveDraw);
+                                        canvas.addEventListener('mouseup', endDraw);
+                                        canvas.addEventListener('mouseleave', endDraw);
+
+                                        canvas.addEventListener('touchstart', startDraw, {passive: false});
+                                        canvas.addEventListener('touchmove', moveDraw, {passive: false});
+                                        canvas.addEventListener('touchend', endDraw);
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </t>
+</t>

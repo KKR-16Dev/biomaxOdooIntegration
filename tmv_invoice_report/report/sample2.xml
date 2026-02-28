@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_tmv_invoice" model="ir.actions.report">
+        <field name="name">TMV Tax Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tmv_invoice_report.tmv_invoice_document</field>
+        <field name="report_file">tmv_invoice_report.tmv_invoice_document</field>
+        <field name="print_report_name">'%s - TMV.pdf' % (object.name or "Invoice").replace("/","-")</field>
+        <field name="attachment"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="tmv_invoice_report.paperformat_tmv_invoice"/>
+    </record> 
+
+    <!-- QWeb Template -->
+    <template id="tmv_invoice_document">
+        <t t-call="web.html_container">
+            <div class="page" style="width:100%;">
+                <t t-foreach="docs" t-as="o">
+
+                    <!-- Header image and the Basic Details -->
+                    <div class="header o_company_header text-center">
+                        <!-- TMV Logo Centered -->
+                        <div style="margin-bottom:4px;">  <!-- reduced gap -->
+                        <!-- <div style="margin-bottom:8px;"> balanced spacing -->
+                            <img t-if="o.company_id.logo" class="o_company_logo"
+                                t-att-src="image_data_uri(o.company_id.logo)" alt="TMV Logo"
+                                style="max-height:80px;"/>
+                        </div>
+                    </div>
+
+                    <!-- Contact Details Row -->
+                    <!-- <table style="width:100%; border-collapse:collapse; margin-top:0; font-family: 'Lato', sans-serif;"> no extra gap above -->
+                    <table style="width:100%; border-collapse:collapse; margin-top:2px; font-family: 'Lato', sans-serif;">
+                        <tr style="background:#f8f9fa; border:1px solid #ddd; border-radius:12px;">
+                            <!-- Column A: Tel -->
+                            <td style="width:33%; padding:6px 12px; text-align:center; font-size:13px; white-space:nowrap;">
+                                <span style="color:#6c757d; font-weight:500; margin-right:6px;">Tel</span>
+                                <t t-out="o.company_id.phone or '+91 9090 0303 10'"/>
+                            </td>
+
+                            <!-- Column B: Web -->
+                            <td style="width:33%; padding:6px 12px; text-align:center; font-size:13px; white-space:nowrap;">
+                                <span style="color:#6c757d; font-weight:500; margin-right:6px;">Web</span>
+                                <a t-if="o.company_id.website"
+                                t-att-href="'http://' + o.company_id.website if not o.company_id.website.startswith(('http://','https://')) else o.company_id.website"
+                                target="_blank"
+                                style="color:#000; text-decoration:none;">
+                                    <t t-out="o.company_id.website"/>
+                                </a>
+                            </td>
+
+                            <!-- Column C: Email -->
+                            <td style="width:34%; padding:6px 12px; text-align:center; font-size:13px; white-space:nowrap;">
+                                <span style="color:#6c757d; font-weight:500; margin-right:6px;">Email</span>
+                                <a t-if="o.company_id.email"
+                                t-att-href="'mailto:%s' % o.company_id.email"
+                                style="color:#000; text-decoration:none;">
+                                    <t t-out="o.company_id.email"/>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- E-Waybill Table -->
+                    <table style="width:100%; border-right:1px solid #d6d7d2ff; border-collapse: collapse; background-color:#f8f9fa;">
+                        <tr>
+                            <div t-if="l10n_in_einvoice_json" >
+                                <td colspan="3" style="padding:4px 0;">
+                                    <h3 style="color:#a60000; font-weight:600; margin:0;">E-WayBill</h3>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            
+                            <t t-set="l10n_in_einvoice_json" t-value="o._get_l10n_in_edi_response_json()"/>
+                            <div class="col" t-if="l10n_in_einvoice_json" name="ack_no">
+                                <strong>Acknowledgement</strong>
+                                <div t-out="l10n_in_einvoice_json['AckNo']"/>
+                                <div t-out="l10n_in_einvoice_json['AckDt']"/>
+                            </div>
+
+                            
+                            <t t-set="l10n_in_einvoice_json" t-value="o._get_l10n_in_edi_response_json()"/>
+                            <div t-attf-class="#{'col-5' if report_type != 'html' else 'ms-auto'} row avoid-page-break-inside" t-if="l10n_in_einvoice_json">
+                                <div class="col-7 me-2" t-attf-style="#{'' if report_type != 'html' else 'padding: 0 !important;'}">
+                                    <strong>IRN:</strong>
+                                    <span t-esc="l10n_in_einvoice_json['Irn']"/>
+                                </div>
+                                <div class="col-3 mt-1">
+                                    <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' %('QR', l10n_in_einvoice_json['SignedQRCode'], 500, 500)" style="max-height: 155px"/>
+                                </div>
+                            </div>
+                        </tr>
+                    </table>
+
+                    <!-- Tax Invoice Block -->
+                    <table style="width:100%; border-collapse: collapse; background-color:#f8f9fa; border:1px solid #d6d7d2ff;font-family: 'Lato', sans-serif;">
+                        <!-- Heading Row -->
+                        <tr>
+                            <td colspan="3" style="padding:8px; text-align:center; vertical-align:middle; border-bottom:1px solid #d6d7d2ff;">
+                                <h2 style="color:#a60000; font-weight:700; margin:0; font-size:22px;">
+                                    Tax Invoice
+                                </h2>
+                            </td>
+                        </tr>
+
+                        <!-- Details Row (3 columns) -->
+                        <tr>
+                            <!-- Column-A: Invoice no / PO / Delivery -->
+                            <td style="width:50%; vertical-align:top; padding:8px; line-height:1.6; border-right:1px solid #d6d7d2ff;">
+                                <table style="width:100%; border-collapse:collapse;">
+                                    <tr>
+                                        <td style="color:#6c757d; width:35%; padding:2px;">Invoice No.</td>
+                                        <td style="width:65%; padding:2px;"><strong><t t-out="o.name"/></strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:#6c757d; width:35%; padding:2px;">P.O. No.</td>
+                                        <td style="width:65%; padding:2px;"><strong><t t-out="o.invoice_origin or '-'"/></strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:#6c757d; width:35%; padding:2px;">Invoice Date</td>
+                                        <td style="width:65%; padding:2px;">
+                                            <strong><t t-esc="o.invoice_date and o.invoice_date.strftime('%d-%b-%Y') or '-'"/></strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:#6c757d; width:35%; padding:2px;">Delivery Date</td>
+                                        <td style="width:65%; padding:2px;">
+                                            <strong><t t-esc="o.invoice_date_due and o.invoice_date_due.strftime('%d-%b-%Y') or '-'"/></strong>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+
+                            <!-- Column-C: Company details -->
+                            <td style="width:50%; vertical-align:top; padding:8px; line-height:1.6;">
+                                <p style="margin:0; font-weight:bold; "><t t-out="o.company_id.name or 'The Modern Village'"/></p>
+                                <p style="margin:0;">Address <t t-out="o.company_id.street or 'Plot No 42, 43, S.No 30/1A, Sakthi Garden Phase II,'"/><br/>
+                                <t t-out="o.company_id.street2 or ''"/></p>
+                                <p style="margin:0;">Phone <t t-out="o.company_id.phone or '+91 9000 3003 10'"/></p>
+                                <p style="margin:0;">GSTIN <t t-out="o.company_id.vat or '07AB7776VGH56'"/></p>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Shipping & Delivery in Single Row -->
+                    <table style="width:100%; border-right:1px solid #d6d7d2ff; border-collapse: collapse; background-color:#f8f9fa;">
+                        <tr>
+                            <!-- Shipping Address -->
+                            <td style="width:50%; vertical-align:top; padding:8px; line-height:1.6;">
+                                <strong style="color:#a60000; font-size:18px;">Shipping Address</strong>
+                                <p style="margin:0;">M/S <t t-out="o.partner_id.name or 'The Modern Village'"/></p>
+                                <p style="margin:0;">Address: <t t-out="o.partner_id.street or 'Plot No 42, 43, S.No 30/1A, Sakthi Garden Phase II,'"/><br/>
+                                <t t-out="o.partner_id.street2 or ''"/></p>
+                                <p style="margin:0;">Phone: <t t-out="o.partner_id.phone or '+91 9000 3003 10'"/></p>
+                                <p style="margin:0;">GSTIN: <t t-out="o.partner_id.vat or '07AB7776VGH56'"/></p>
+                                <p style="margin:0;">Place of Supply: <t t-out="o.partner_id.state_id.name or 'Delhi'"/></p>
+                            </td>
+
+
+                            <!-- Delivery Address -->
+                            <td style="width:50%; vertical-align:top; padding:8px; line-height:1.6;">
+                                <strong style="color:#a60000; font-size:18px;">Delivery Address</strong>
+                                <p style="margin:0;">M/S <t t-out="o.partner_shipping_id.name or 'The Modern Village'"/></p>
+                                <p style="margin:0;">Address: <t t-out="o.partner_shipping_id.street or 'Plot No 42, 43, S.No 30/1A, Sakthi Garden Phase II,'"/><br/> 
+                                <t t-out="o.partner_shipping_id.street2 or ''"/></p>
+                                <p style="margin:0;">Phone: <t t-out="o.partner_shipping_id.phone or '+91 9000 3003 10'"/></p>
+                                <p style="margin:0;">GSTIN: <t t-out="o.partner_shipping_id.vat or '07AB7776VGH56'"/></p>
+                                <p style="margin:0;">Place of Supply: <t t-out="o.partner_shipping_id.state_id.name or 'Delhi'"/></p>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Product Table -->
+                    <table style="width:100%; border:1px solid black; border-collapse:collapse; font-size:13px; margin-top:15px; border-radius:10px; overflow:hidden;">
+                        <thead>
+                            <tr style="background-color:#fcefdc; text-align:center;">
+                                <th style="border:1px solid #ddd; padding:6px;">Sr. No.</th>
+                                <th style="border:1px solid #ddd; padding:6px;">Product Name</th>
+                                <th style="border:1px solid #ddd; padding:6px;">HSN/ SAC</th>
+                                <th style="border:1px solid #ddd; padding:6px;">Qty</th>
+                                <th style="border:1px solid #ddd; padding:6px;">Rate</th>
+                                <!-- <th style="border:1px solid #ddd; padding:6px;">Taxable Value</th> -->
+                                <th colspan="2" style="border:1px solid #ddd; padding:6px;">Taxes</th>
+                                <th style="border:1px solid #ddd; padding:6px;">Total</th>
+                            </tr>
+                            <tr style="background-color:#fcefdc; text-align:center; font-size:12px;">
+                                <th colspan="5" style="border:1px solid #ddd; text-align:right; padding:6px;"></th>
+                                <th style="border:1px solid #ddd; padding:4px;">%</th>
+                                <th style="border:1px solid #ddd; padding:4px;">Amount</th>
+                                <th style="border:1px solid #ddd; text-align:right; padding:6px;"></th>
+                            </tr>
+                        </thead>
+                        
+                        <!-- SR Number for products -->
+                        <tbody>
+                            <t t-foreach="enumerate(o.invoice_line_ids, start=1)" t-as="line" t-key="line[1].id">
+                                <tr>
+                                    <!-- Serial Number -->
+                                    <td style="border:1px solid #ddd; text-align:center; padding:2px;">
+                                        <t t-esc="line[0]"/>   <!-- index from enumerate -->
+                                    </td>
+
+                                    <!-- Product Name -->
+                                    <td style="border:1px solid #ddd; padding:6px;">
+                                        <t t-esc="line[1].product_id.name"/>
+                                    </td>
+
+                                    <!-- HSN Code -->
+                                    <td style="border:1px solid #ddd; text-align:center; padding:4px;">
+                                        <t t-esc="line[1].product_id.l10n_in_hsn_code or '-'"/>
+                                    </td>
+
+                                    <!-- Quantity -->
+                                    <td style="border:1px solid #ddd; text-align:center; padding:4px;">
+                                        <t t-esc="line[1].quantity"/> <t t-esc="line[1].product_uom_id.name"/>
+                                    </td>
+
+                                    <!-- Rate -->
+                                    <td style="border:1px solid #ddd; text-align:right; padding:4px;">
+                                        <t t-esc="'%.2f' % line[1].price_unit"/>
+                                    </td>
+
+                                    <!-- Tax % -->
+                                    <td style="border:1px solid #ddd; text-align:center; padding:4px;">
+                                        <t t-esc="line[1].tax_ids and line[1].tax_ids[0].amount or '0.00'"/>
+                                    </td>
+
+                                    <!-- Tax Amount -->
+                                    <td style="border:1px solid #ddd; text-align:right; padding:4px;">
+                                        <t t-esc="'%.2f' % (line[1].price_total - line[1].price_subtotal)"/>
+                                    </td>
+
+                                    <!-- Total -->
+                                    <td style="border:1px solid #ddd; text-align:right; padding:4px;">
+                                        <t t-esc="'%.2f' % line[1].price_total"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+
+                        <tfoot>
+                            <tr style="background-color:#fcefdc; font-weight:bold; border:1px solid black;">
+                                <td style="border:1px solid #ddd; text-align:right; padding:6px;"></td>
+                                <td colspan="2" style="border:1px solid #ddd; text-align:right; padding:6px;">Total</td>
+                                <td style="border:1px solid #ddd; text-align:center; padding:6px;">
+                                    <t t-out="sum(o.invoice_line_ids.mapped('quantity'))"/> 
+                                    <t t-out="o.invoice_line_ids and o.invoice_line_ids[0].product_uom_id.name or ''"/>
+                                </td>
+                                
+                                <td style="border:1px solid #ddd; text-align:right; padding:6px;">
+                                    <t t-esc="'%.2f' % sum(o.invoice_line_ids.mapped('price_subtotal'))"/>
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:right; padding:6px;"></td>
+                                <td style="border:1px solid #ddd; text-align:right; padding:6px;">
+                                    <t t-esc="'%.2f' % sum([(l.price_total - l.price_subtotal) for l in o.invoice_line_ids])"/>
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:right; padding:6px;">
+                                    <t t-esc="'%.2f' % sum(o.invoice_line_ids.mapped('price_total'))"/>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <!-- Payment & Bank Details with Taxable Amounts -->
+                    <table style="width:100%; border:1px solid #ddd; padding:8px;">
+                        <tr>
+                            <!-- LEFT: Payment & Bank Details -->
+                            <td style="width:40%; vertical-align:top; padding:8px;">
+                                <h4 style="color:#b30000; margin:0;">Payment &amp; Bank Details</h4>
+                                <table style="width:100%; margin-top:5px;">
+                                    <tr>
+                                        <td style="color:gray;">Bank Name</td>
+                                        <td><b>State Bank of India</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:gray;">Branch Name</td>
+                                        <td><b>RAF CAMP</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:gray;">Account No.</td>
+                                        <td><b>2000000000001247</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:gray;">Branch IFSC</td>
+                                        <td><b>SBIN000488</b></td>
+                                    </tr>
+                                </table>
+                            </td>
+
+                            <!-- MIDDLE: QR Code (reduced width) -->
+                            <td style="width:15%; text-align:center; vertical-align:middle;">
+                                <div style="display:inline-block;">
+                                    <t t-if="o.company_id.account_fiscal_country_id.code == 'IN' and o.company_id.l10n_in_upi_id">
+                                        <div id="qrcode" class="d-flex mb-3 avoid-page-break-inside">
+                                            <div class="qrcode me-3" id="qrcode_image">
+                                                <t t-set="qr_code_url" t-value="o._generate_qr_code(silent_errors=True)"/>
+                                                <p t-if="qr_code_url" class="position-relative mb-0">
+                                                    <img t-att-src="qr_code_url"/>
+                                                    <img src="/account/static/src/img/Odoo_logo_O.svg"
+                                                        id="qrcode_odoo_logo"
+                                                        class="top-50 start-50 position-absolute bg-white border border-white border-3 rounded-circle"
+                                                    />
+                                                </p>
+                                            </div>
+                                            <div class="d-inline text-muted lh-sm fst-italic" id="qrcode_info" t-if="qr_code_url">
+                                                <p>Scan to Pay</p>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </td>
+
+
+
+                            <!-- RIGHT: Taxable Amounts -->
+                            <td style="width:45%; vertical-align:top; padding:8px;">
+                                <table style="width:100%; margin-top:5px;">
+                                    <tr>
+                                        <td style="color:gray;">Taxable Amount</td>
+                                        <td style="text-align:right; font-weight:bold; color:black;">
+                                            <t t-esc="'%.2f' % sum(o.invoice_line_ids.mapped('price_subtotal'))"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:gray;">Add: IGST</td>
+                                        <td style="text-align:right; font-weight:bold; color:black;">
+                                            <t t-esc="'%.2f' % sum([(l.price_total - l.price_subtotal) for l in o.invoice_line_ids])"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:gray;">Total Tax</td>
+                                        <td style="text-align:right; font-weight:bold; color:black;">
+                                            <t t-esc="'%.2f' % sum([(l.price_total - l.price_subtotal) for l in o.invoice_line_ids])"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:gray; font-weight:bold;">Total Amount</td>
+                                        <td style="text-align:right; font-weight:bold; color:black;">
+                                            <t t-esc="'%.2f' % sum(o.invoice_line_ids.mapped('price_total'))"/>
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Wrapper to control page break -->
+                    <div style="page-break-inside: avoid; margin-top:10px;">
+
+                        <table style="width:100%; border-collapse:collapse;">
+                            <tr>
+                                <!-- LEFT: Terms & Conditions -->
+                                <td style="width:60%; vertical-align:top; padding:8px;">
+                                    <div class="text-muted mb-3"
+                                        t-attf-style="#{'text-align:justify;text-justify:inter-word;' if o.company_id.terms_type != 'html' else ''}"
+                                        t-if="not is_html_empty(o.narration)" 
+                                        name="comment">
+                                        <span t-field="o.narration"/>
+                                    </div>
+                                </td>
+
+                                <!-- RIGHT: Invoice Total (in words) -->
+                                <td style="width:40%; vertical-align:top; padding:8px;">
+                                    <div style="font-size:15px; margin-bottom:5px; color:black;">
+                                        Invoice Total (in words)
+                                    </div>
+                                    <div style="font-weight:bold; font-size:15px; margin-bottom:8px;">
+                                        <p class="lh-sm" t-if="o.amount_total_words">
+                                            <span class="text-muted" t-field="o.amount_total_words"/>
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Computer Generated Invoice Notice -->
+                        <div style="text-align:center; margin-top:12px; page-break-inside: avoid;">
+                            <div style="
+                                background-color:#f5f5f5;
+                                border-radius:8px;
+                                padding:15px;
+                                font-size:14px;
+                                font-weight:500;
+                                color:black;
+                                display:inline-block;
+                                width:80%;
+                            ">
+                                This is computer generated invoice no signature required.<br/>
+                                (Authorised Signatory)
+                            </div>
+                        </div>
+
+                    </div>
+
+                </t>
+            </div>
+        </t>
+    </template>
+
+</odoo>

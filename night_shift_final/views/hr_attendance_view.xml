@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit Search View — using CORRECT filter name from Odoo 18 -->
+    <record id="view_attendance_search_night_shift" model="ir.ui.view">
+        <field name="name">hr.attendance.search.night.shift</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter"/>
+        <field name="arch" type="xml">
+
+            <!-- Position after 'myattendances' filter (confirmed from Odoo 18 search XML) -->
+            <xpath expr="//filter[@name='myattendances']" position="after">
+                <separator/>
+                <filter
+                    string="Night Shift (6PM-3AM)"
+                    name="filter_night_shift"
+                    domain="[('is_night_shift', '=', True)]"
+                />
+                <filter
+                    string="Day Shift"
+                    name="filter_day_shift"
+                    domain="[('is_night_shift', '=', False)]"
+                />
+                <separator/>
+            </xpath>
+
+            <!-- Add Group By Night/Day inside existing group -->
+            <xpath expr="//filter[@name='employee']" position="before">
+                <filter
+                    string="Night / Day"
+                    name="group_by_night"
+                    context="{'group_by': 'is_night_shift'}"
+                />
+            </xpath>
+
+        </field>
+    </record>
+
+
+
+    <!-- Dedicated Night Shift menu action -->
+    <record id="action_night_shift_attendance" model="ir.actions.act_window">
+        <field name="name">Night Shift Attendance</field>
+        <field name="res_model">hr.attendance</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_night_shift', '=', True)]</field>
+        <field name="context">{'search_default_employee': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No night shift records found.</p>
+            <p>Records where check-in is between 6PM and 3AM (IST) appear here.</p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_night_shift_attendance"
+        name="TES Shift"
+        parent="hr_attendance.menu_hr_attendance_root"
+        action="action_night_shift_attendance"
+        sequence="15"
+    />
+
+</odoo>

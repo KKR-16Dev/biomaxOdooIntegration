@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Daily Submission Form Page -->
+    <template id="daily_submission_page" name="Daily Submission Form">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+                <div class="container mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2">
+                            <div class="card shadow-sm">
+                                <div class="card-body p-5">
+                                    <h2 class="text-center mb-2">Daily Submission Form</h2>
+                                    <p class="text-center text-muted mb-4">
+                                        Get in touch with your customers to provide them with better service. 
+                                        You can modify the form fields to gather more precise information.
+                                    </p>
+                                    
+                                    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_ACTUAL_API_KEY"></script>
+                                    <!-- Add after Google Maps script -->
+                                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"/>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+                                    
+
+                                    <form id="dailySubmissionForm" class="daily-submission-form">
+                                        <!-- Name Field -->
+                                        <div class="form-group mb-3">
+                                            <label for="name" class="form-label">
+                                                Your Name <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="name" 
+                                                   name="name" 
+                                                   placeholder="Administrator" 
+                                                   required="required"/>
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="crane_name" class="form-label">
+                                                Crane Name <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="crane_name" 
+                                                   name="crane_name" 
+                                                   placeholder="Crane Name"/>
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="x_date_time" class="form-label">
+                                                Date Time <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="input-group date" id="datetimepicker1">
+                                                <input type="text" 
+                                                    class="form-control" 
+                                                    id="x_date_time" 
+                                                    name="x_date_time" 
+                                                    placeholder="dd-mm-yyyy --:--"
+                                                    required="required"/>
+                                                <span class="input-group-addon input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="customer_name" class="form-label">
+                                                Customer Name <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="customer_name" 
+                                                   name="customer_name" 
+                                                   placeholder="Customer Name" />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="customer_mobile_number" class="form-label">
+                                                Mobile Number <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="customer_mobile_number" 
+                                                   name="customer_mobile_number" 
+                                                   placeholder="Mobile Number" />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="operator_name" class="form-label">
+                                                Operator Name <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="operator_name" 
+                                                   name="operator_name" 
+                                                   placeholder="Operator Name" />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="start_time" class="form-label">
+                                                Starting Time <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="datetime" 
+                                                   class="form-control" 
+                                                   id="start_time" 
+                                                   name="start_time" 
+                                                   placeholder="Starting Time" />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="close_time" class="form-label">
+                                                Closing Time <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="datetime"
+                                                   class="form-control" 
+                                                   id="close_time" 
+                                                   name="close_time" 
+                                                   placeholder="Closing Time" />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="lunch" class="form-label">
+                                                Lunch <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="lunch" 
+                                                   name="lunch" 
+                                                   placeholder="Lunch" />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="working_photo" class="form-label">
+                                                Working Photo <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="working_photo" 
+                                                   name="working_photo" 
+                                                   placeholder="Working Photo" />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="payment" class="form-label">
+                                                Payment <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="payment" 
+                                                   name="payment" 
+                                                   placeholder="Payment" />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="operator_selfie" class="form-label">
+                                                Operator Selfie <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="operator_selfie" 
+                                                   name="operator_selfie" 
+                                                   placeholder="Operator Selfie" />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="work_nature" class="form-label">
+                                                Work Nature <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="work_nature" 
+                                                   name="work_nature" 
+                                                   placeholder="Work Nature"/> 
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="operator_beta" class="form-label">
+                                                Operator Beta <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="operator_beta" 
+                                                   name="operator_beta" 
+                                                   placeholder="Operator Beta"/> 
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="logsheet_picture" class="form-label">
+                                                Logsheet Picture <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="logsheet_picture" 
+                                                   name="logsheet_picture" 
+                                                   placeholder="Logsheet Picture" />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="comments_work" class="form-label">
+                                                Comments Of Work <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="comments_work" 
+                                                   name="comments_work" 
+                                                   placeholder="Comments Of Work" />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="work_assigned_by" class="form-label">
+                                                Work Assigned By <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="work_assigned_by" 
+                                                   name="work_assigned_by" 
+                                                   placeholder="Work Assigned By" />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="shift_confirmed" class="form-label">
+                                                Confirm Shift <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="shift_confirmed" 
+                                                   name="shift_confirmed" 
+                                                   placeholder="Confirm Shift" />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="fill_diesel" class="form-label">
+                                                Fill Diesel <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="fill_diesel" 
+                                                   name="fill_diesel" 
+                                                   placeholder="Fill Diesel" />
+                                        </div>
+
+                                        <div class="row mb-4">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Operator Signature <span class="text-danger">*</span></label>
+                                                <div class="signature-pad-container border rounded bg-white">
+                                                    <canvas id="operator_signature_canvas" style="width: 100%; height: 150px; cursor: crosshair;"></canvas>
+                                                    <input type="hidden" name="operator_signature" id="operator_signature_input" required="required"/>
+                                                </div>
+                                                <button type="button" class="btn btn-sm btn-link text-danger" onclick="clearCanvas('operator_signature_canvas')">Clear Operator Signature</button>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Customer Signature <span class="text-danger">*</span></label>
+                                                <div class="signature-pad-container border rounded bg-white">
+                                                    <canvas id="customer_signature_canvas" style="width: 100%; height: 150px; cursor: crosshair;"></canvas>
+                                                    <input type="hidden" name="customer_signature" id="customer_signature_input" required="required"/>
+                                                </div>
+                                                <button type="button" class="btn btn-sm btn-link text-danger" onclick="clearCanvas('customer_signature_canvas')">Clear Customer Signature</button>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Submit Button -->
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary btn-lg px-5">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                    <script>
+                                        // Simple function to clear the canvas
+                                        function clearCanvas(canvasId) {
+                                            const canvas = document.getElementById(canvasId);
+                                            const ctx = canvas.getContext('2d');
+                                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                            document.getElementById(canvasId.replace('_canvas', '_input')).value = "";
+                                        }
+
+                                        // Logic to handle drawing and saving to the hidden input
+                                        document.addEventListener("DOMContentLoaded", function() {
+                                            const canvases = ['operator_signature_canvas', 'customer_signature_canvas'];
+                                            
+                                            canvases.forEach(id => {
+                                                const canvas = document.getElementById(id);
+                                                const ctx = canvas.getContext('2d');
+                                                let drawing = false;
+
+                                                // Basic drawing logic
+                                                canvas.addEventListener('mousedown', () => drawing = true);
+                                                canvas.addEventListener('mouseup', () => {
+                                                    drawing = false;
+                                                    ctx.beginPath();
+                                                    // Save the drawing to the hidden input field
+                                                    document.getElementById(id.replace('_canvas', '_input')).value = canvas.toDataURL();
+                                                });
+
+                                                canvas.addEventListener('mousemove', (e) => {
+                                                    if (!drawing) return;
+                                                    ctx.lineWidth = 2;
+                                                    ctx.lineCap = 'round';
+                                                    ctx.lineTo(e.offsetX, e.offsetY);
+                                                    ctx.stroke();
+                                                });
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    
+    <!-- Thank You Page -->
+    <template id="thank_you_page" name="Thank You Page">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+                <div class="container mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-3 text-center">
+                            <div class="card shadow-sm p-5">
+                                <h1 class="text-success mb-4">
+                                    <i class="fa fa-check-circle"></i> Thank You!
+                                </h1>
+                                <h3>Your submission has been received.</h3>
+                                <p class="text-muted mt-3">
+                                    We appreciate your time and will get back to you soon.
+                                </p>
+                                <a href="/daily-submission" class="btn btn-primary mt-4">
+                                    Submit Another Response
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
