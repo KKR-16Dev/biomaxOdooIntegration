@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="zoho_employee_idin_form" model="ir.ui.view">
+        <field name="name">hr.employee</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group/group/field[@name='work_email']" position="after">
+                <field name="zoho_employee_id" />
+                <field name="employee_dept" />
+            </xpath>
+        </field>
+    </record>
+
+    
+    <record id="zoho_employeeid_inlist" model="ir.ui.view">
+        <field name="name">hr.employee</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='name']" position="after">
+                <field name="zoho_employee_id" optional="hidden"/>
+                <field name="employee_dept" />
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="z_worked_hours_inlist" model="ir.ui.view">
+        <field name="name">hr.attendance</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//list/field[@name='check_in']" position="after">
+                <field name="z_device_in" optional="hidden"/>
+            </xpath>
+
+            <xpath expr="//list/field[@name='check_out']" position="after">
+                <field name="z_device_out" optional="hidden"/>
+                <field name="z_worked_hours" widget="float_time" optional="hidden"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
